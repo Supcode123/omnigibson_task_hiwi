@@ -62,7 +62,7 @@ task:
   predefined_problem: null
   online_object_sampling: false
   debug_object_sampling: null
-  highlight_task_relevant_objects: ture
+  highlight_task_relevant_objects: false
   termination_config:
     max_steps: 500
   reward_config:
