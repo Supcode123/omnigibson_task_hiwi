@@ -6,10 +6,10 @@ def config_obj_Matadata():
     objects = json_parsing()
     i = random.randint(0, len(objects))
     key = list(objects.keys())[i]
-
+    # key = "armchair_hdibix_0"
     print("*************************************************************")
     print(f"category of fourniture is: {objects[key]}, its name is: {key},")
-    print("*************************************************************")
+
 
     assert key != "bench_kpeeai_0", f"obj cannot be placed on bench_kpeeai_0 because unknown bugs "
 
@@ -39,11 +39,17 @@ def config_obj_Matadata():
             lbia_y = 0.80
             rbia_y = 0.70
             bia_z = 0.60
-        elif (key[9:15] == "rtbsof" or key[9:15] == "qyntri" or key[9:15] == "hdibix"):
+        elif (key[9:15] == "rtbsof" or key[9:15] == "qyntri"):
             lbia_x = 0.60
             rbia_x = 0.60
             lbia_y = 0.70
             rbia_y = 0.70
+            bia_z = 0.60
+        elif (key[9:15] == "hdibix"):
+            lbia_x = 0.70
+            rbia_x = 0.70
+            lbia_y = 0.80
+            rbia_y = 0.75
             bia_z = 0.60
     if (objects[key] == "bench"):
         if (key[6:12] == "ybkjzd"):
@@ -59,7 +65,8 @@ def config_obj_Matadata():
             rbia_y = 3.192
             bia_z = 0.56
     if (objects[key] == "bar"):
-        lbia_x = rbia_x = lbia_y = rbia_y = 0.352
+        lbia_x = rbia_x = 0.352
+        lbia_y = rbia_y = 0.36
         bia_z = 0.60
     if (objects[key] == "ottoman" or objects[key] == 'breakfast_table'):
         lbia_x = rbia_x = lbia_y = rbia_y = 0.65
