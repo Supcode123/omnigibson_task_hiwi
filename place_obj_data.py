@@ -2,16 +2,19 @@
 
 from json_parser import json_parsing
 import random
-def config_obj_Matadata():
-    objects = json_parsing()
-    i = random.randint(0, len(objects))
-    key = list(objects.keys())[i]
+def config_obj_Matadata(furniture_traverse,flag):
+    furniture_obj = json_parsing()
+    if (flag) :
+       i = random.randint(0, len(furniture_obj))
+    else:
+       i = furniture_traverse
+    key = list(furniture_obj.keys())[i]
     # key = "armchair_hdibix_0"
-    print("*************************************************************")
-    print(f"category of fourniture is: {objects[key]}, its name is: {key},")
+    print("***************************************************************************************************")
+    print(f"it is the {i+1}th furniture, category of furniture is: {furniture_obj[key]}, its name is: {key},")
 
 
-    assert key != "bench_kpeeai_0", f"obj cannot be placed on bench_kpeeai_0 because unknown bugs "
+    #assert key != "bench_kpeeai_0", f"obj cannot be placed on bench_kpeeai_0 because unknown bugs "
 
     lbia_x = 0.0
     lbia_y = 0.0
@@ -20,7 +23,7 @@ def config_obj_Matadata():
     rbia_y = 0.0
 
 # tunind of the boundingbox coordinate
-    if objects[key] == "sofa":
+    if furniture_obj[key] == "sofa":
         if (key == "sofa_ewview_0" or key == "sofa_ewview_1"):
             lbia_x = 1.0
             rbia_x = 0.8
@@ -32,7 +35,7 @@ def config_obj_Matadata():
             lbia_y = 0.9
             rbia_y = 0.70
             bia_z = 0.45
-    if objects[key] == "armchair":
+    if furniture_obj[key] == "armchair":
         if (key[9:15] == "hicyww" or key[9:15] == "ukuwuu" or key[9:15] == "jdtdpa"):
             lbia_x = 0.60
             rbia_x = 0.50
@@ -51,7 +54,7 @@ def config_obj_Matadata():
             lbia_y = 0.80
             rbia_y = 0.75
             bia_z = 0.60
-    if (objects[key] == "bench"):
+    if (furniture_obj[key] == "bench"):
         if (key[6:12] == "ybkjzd"):
             lbia_x = 2.6189
             rbia_x = 3.7
@@ -64,17 +67,17 @@ def config_obj_Matadata():
             lbia_y = 3.10
             rbia_y = 3.192
             bia_z = 0.56
-    if (objects[key] == "bar"):
+    if (furniture_obj[key] == "bar"):
         lbia_x = rbia_x = 0.352
         lbia_y = rbia_y = 0.36
         bia_z = 0.60
-    if (objects[key] == "ottoman" or objects[key] == 'breakfast_table'):
+    if (furniture_obj[key] == "ottoman" or furniture_obj[key] == 'breakfast_table'):
         lbia_x = rbia_x = lbia_y = rbia_y = 0.65
         bia_z = 0.33
-    if (objects[key] == "console_table"):
+    if (furniture_obj[key] == "console_table"):
         lbia_x = rbia_x = lbia_y = rbia_y = 0.4
         bia_z = 0.30
-    if (objects[key] == 'coffee_table'):
+    if (furniture_obj[key] == 'coffee_table'):
         lbia_x = rbia_x = lbia_y = rbia_y = 0.55
         bia_z = 0.1
     return key, lbia_x, lbia_y, bia_z, rbia_x, rbia_y

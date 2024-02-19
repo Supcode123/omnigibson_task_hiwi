@@ -18,5 +18,6 @@ def json_parsing():
         args = value['args']
         if (args['category'] in accepted_categories):
                       obj_names[key] = args['category']
+    del obj_names["bench_kpeeai_0"]  #obj cannot be placed on bench_kpeeai_0 because unknown bugs
     #print(obj_names)
     return obj_names
