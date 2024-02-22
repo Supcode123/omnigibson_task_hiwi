@@ -7,14 +7,14 @@
 
 ## tasks introduction
 - main tasks
-  - task_scene_robot_obj: Generates a BEHAVIOR Task environment，also include one restaurant_brunch scene, robot and extra obj. 
-  - obj_load_placement: Generates a restaurant_brunch scene and load extra objects, place them on the desired furnitures.
-    - json_parser: to parse the json file of the Scene, and get the metadata of its objects.
-    - place_obj_data: Generate the coordinate data to have fine-tuning on the coordinate range of obj to be placed.
-- restaurant_brunch_best: json file which contain metadatas of all the prebuild objs in this restaurant_brunch scene.
+  - task_scene_robot_obj.py: Generates a BEHAVIOR Task environment，also include one restaurant_brunch scene, robot and extra obj. 
+  - obj_load_placement.py: Generates a restaurant_brunch scene and load extra objects, place them on the desired furnitures.
+    - json_parser.py: to parse the json file of the Scene, and get the metadata of its objects.
+    - place_obj_data.py: Generate the coordinate data to have fine-tuning on the coordinate range of obj to be placed.
+- restaurant_brunch_best.json: json file which contain metadatas of all the prebuild objs in this restaurant_brunch scene.
 - yaml files:
-  - task_Dec: yaml file includes Task, scene, Robot, objects to load.
-  - obj_LodeWithoutTask: yaml files include only scene and objs for simpler version to load.
+  - task_Dec.yaml: yaml file includes Task, scene, Robot, objects to load.
+  - obj_LodeWithoutTask.yaml: yaml files include only scene and objs for simpler version to load.
   
 ## pointers
 - Remind：launch the shell script (sudo ./run_docker.sh -h <ABS_DATA_PATH>) first when open the terminal.
