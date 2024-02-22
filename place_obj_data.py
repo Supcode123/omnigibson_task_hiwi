@@ -3,13 +3,29 @@
 from json_parser import json_parsing
 import random
 def config_obj_Matadata(furniture_traverse,flag):
+    """
+    Generate the coordinate data to have fine-tuning on the
+    coordinate range of obj to be placed .
+
+    Args:
+        furniture_traverse(int): the path of JSON_file.
+        flag(bool): choice whether to place the intended obj on furniture randomly
+                    or place on the furniture in traversal.
+
+    Returns:
+        key(str): furniture name
+        lbia_x(float): tolerance of the bounding_box on its left x_axis border
+        rbia_x(float): tolerance of the bounding_box on its right x_axis border
+        lbia_y(float): tolerance of the bounding_box on its left y_axis border
+        rbia_y(float): tolerance of the bounding_box on its right y_axis border
+        bia_z(float): tolerance of the bounding_box on its z_axis border
+    """
     furniture_obj = json_parsing()
     if (flag) :
        i = random.randint(0, len(furniture_obj))
     else:
        i = furniture_traverse
     key = list(furniture_obj.keys())[i]
-    # key = "armchair_hdibix_0"
     print("***************************************************************************************************")
     print(f"it is the {i+1}th furniture, category of furniture is: {furniture_obj[key]}, its name is: {key},")
 

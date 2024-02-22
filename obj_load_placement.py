@@ -1,4 +1,3 @@
-import os
 import random
 import time
 
@@ -18,7 +17,15 @@ gm.ENABLE_FLATCACHE = True
 
 def object_place(obj, lbia_x, lbia_y, bia_z, rbia_x, rbia_y):
     """
-    TODO:get the coordinates of added obj to place it on furniture right
+    get the coordinates of added obj to place it on furniture right
+
+    Args:
+        obj(None):furniture in the object_registry
+        lbia_x, lbia_y, bia_z, rbia_x, rbia_y (float): tolerance of the bounding_box on each direction of its border
+
+     Returns:
+         float:
+         random appropriate x,y,z place_coordinate of intended obj
     """
     # Get reference to objects in the scene
     aabb_center = obj.aabb_center
@@ -33,6 +40,16 @@ def object_place(obj, lbia_x, lbia_y, bia_z, rbia_x, rbia_y):
 
 
 def success_fail_cal(position_z, param):
+    """
+    calculate the success or fail of the task
+
+    Args:
+        position_z(float): desired obj coordinate by z_axis
+        param(float): real obj coordinate by z_axis after placing
+
+    Return:
+        (bool): success or fail
+    """
     if (abs(position_z - param) < 0.10):
         print("success!")
         return True
@@ -45,21 +62,10 @@ def success_fail_cal(position_z, param):
 
 def main(random_selection=False, headless=False, short_exec=False):
     """
-    Generates a BEHAVIOR Task environment in an online fashion.
-
-    It steps the environment 100 times with random actions sampled from the action space,
-    using the Gym interface, resetting it 10 times.
+    Generates a restaurant_brunch scene and load extra objects,
+    place them on the desired furnitures.
     """
     og.log.info(f"Demo {__file__}\n    " + "*" * 80 + "\n    Description:\n" + main.__doc__ + "*" * 80)
-
-    """print("1.Loding with Task;")
-    print("2.Loding without Task;")
-    choose = input()
-    if (choose == "1"):
-        config_filename = "task_Dec.yaml"
-    elif(choose == "2"):
-        config_filename = "obj_LodeWithoutTask.yaml"
-        """
 
     config_filename = "obj_LodeWithoutTask.yaml"
     cfg = yaml.load(open(config_filename, "r"), Loader=yaml.FullLoader)
@@ -67,7 +73,9 @@ def main(random_selection=False, headless=False, short_exec=False):
     # Load the environment
     env = og.Environment(configs=cfg, action_timestep=1 / 60., physics_timestep=1 / 60.)
 
-    furniture_obj = json_parsing()
+    json_path = "restaurant_brunch_best.json"
+    furniture_obj = json_parsing(json_path)
+
     obj_list = cfg["objects"]
     print("1:choose furniture rondomly")
     print("2:furniture traverse ")
@@ -84,15 +92,19 @@ def main(random_selection=False, headless=False, short_exec=False):
         for f_i in range(len(furniture_obj)):
             furniture_name, lbia_x, lbia_y, bia_z, rbia_x, rbia_y = config_obj_Matadata(iter_, flag)
             # import pdb; pdb.set_trace()
+            # Grab the object references
             obj = env.scene.object_registry("name", furniture_name)
             extra_obj = env.scene.object_registry("name", obj_i["name"])
             print(f"the added object is {obj_i['name']}")
             position_x, position_y, position_z = object_place(obj, lbia_x, lbia_y, bia_z, rbia_x, rbia_y)
+            # Place the object
             extra_obj.set_position([position_x, position_y, position_z])
             extra_obj.keep_still()
             time.sleep(2)
+            # Get the coordinate of object after placing
             position_after_place = extra_obj.get_position()
             print(f"the z_positon of added obj after placing is: {position_after_place[2]}")
+            # compute success and failure times
             TAG = success_fail_cal(position_z, position_after_place[2])
             if (TAG):
                 success_count += 1
@@ -102,43 +114,14 @@ def main(random_selection=False, headless=False, short_exec=False):
             iter_times += 1
     print(f"the total placement times is: {iter_times}, the success times is: {success_count}, the fail times: is {fail_count}")
 
-    # <compute success and failure for furniture_name, object>
-
-    # Reset the robot
-    """robot = env.robots[0]
-    robot.set_position([0, 0, 0])
-    robot.reset()
-    robot.keep_still()"""
-
-    ## Choose robot controller to use
-    # robot=env.robots[0]
-    # robot.set_position([0, 0, 0])
 
     # Allow user to move camera more easily
     og.sim.enable_viewer_camera_teleoperation()
-
-    ## Create teleop controller
-    # action_generator = KeyboardRobotController(robot=robot)
-
-    ##print out relevant keyboard info
-    # action_generator.print_keyboard_teleop_info()
 
     # Other helpful user info
     print("Running demo.")
     print("Press ESC to quit")
 
-    # Loop control until user quits
-    """max_steps = -1 if not short_exec else 100
-    step = 0
-    while step != max_steps:
-         #action = np.random.uniform(-1, 1, robot.action_dim)
-         action = action_generator.get_teleop_action()
-         for _ in range(10):
-
-             env.step(action=action)
-             step += 1
-            # print("action changed")
-"""
     # Step through the environment
     max_steps = 100 if short_exec else 10000
     for i in range(max_steps):
