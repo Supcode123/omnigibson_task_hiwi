@@ -1,4 +1,4 @@
-# Hiwi task besed on Omnigibson_Plattform
+# Robot Simulation besed on Omnigibson_Plattform
 
 ## installation
 [OmniGibson Documentation](https://behavior.stanford.edu/omnigibson/) 
