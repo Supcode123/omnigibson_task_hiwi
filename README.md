@@ -13,7 +13,7 @@
     - place_obj_data.py: generate the coordinate data to have fine-tuning on the coordinate range of obj to be placed.
 - restaurant_brunch_best.json: json file which contain metadatas of all the prebuild objs in this restaurant_brunch scene.
 - yaml files:
-  - task_Dec.yaml: yaml file includes Task, scene, Robot, objects to load.
+  - task_Dec.yaml: yaml file includes Task, Scene, Robot, Objects to load.
   - obj_LodeWithoutTask.yaml: yaml files include only scene and objs for simpler version to load.
   
 ## pointers
