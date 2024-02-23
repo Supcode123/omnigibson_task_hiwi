@@ -14,7 +14,7 @@
 - restaurant_brunch_best.json: json file which contain metadatas of all the prebuild objs in this restaurant_brunch scene.
 - yaml files:
   - task_Dec.yaml: yaml file includes Task, Scene, Robot, Objects to load.
-  - obj_LodeWithoutTask.yaml: yaml files include only scene and objs for simpler version to load.
+  - obj_LodeWithoutTask.yaml: yaml files include only Scene and Objs for simpler version to load.
   
 ## pointers
 - Remind：launch the shell script (sudo ./run_docker.sh -h <ABS_DATA_PATH>) first after opening the terminal.
