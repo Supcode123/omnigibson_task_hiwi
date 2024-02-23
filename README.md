@@ -17,7 +17,7 @@
   - obj_LodeWithoutTask.yaml: yaml files include only scene and objs for simpler version to load.
   
 ## pointers
-- Remind：launch the shell script (sudo ./run_docker.sh -h <ABS_DATA_PATH>) first when open the terminal.
+- Remind：launch the shell script (sudo ./run_docker.sh -h <ABS_DATA_PATH>) first after opening the terminal.
 - pre-built data-location
   - defined-activities location: /home/Administrator/OmniGibson/venv/lib/python3.7/site-packages/bddl/activity_definitions
   - defined-scenes location: /home/Administrator/datasets/datasets/og_dataset/scenes
