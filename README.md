@@ -1,6 +1,6 @@
 # Robot Simulation besed on Omnigibson_Plattform
 
-## installation
+## installation & tutorial
 [OmniGibson Documentation](https://behavior.stanford.edu/omnigibson/) 
 
 [GitHub code source](https://github.com/StanfordVL/OmniGibson)
